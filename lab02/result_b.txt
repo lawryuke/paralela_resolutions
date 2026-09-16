@@ -1,0 +1,28 @@
+===== N = 1600 =====
+
+b = 64
+blocked multiply time: 12647.3 ms
+
+b = 120
+blocked multiply time: 12476.8 ms
+
+b = 128
+blocked multiply time: 12485 ms
+
+b = 144
+blocked multiply time: 12499.1 ms
+
+b = 160
+blocked multiply time: 12503.8 ms
+
+b = 192
+blocked multiply time: 12542.2 ms
+
+b = 256
+blocked multiply time: 12570.8 ms
+
+b = 384
+blocked multiply time: 12479.9 ms
+
+b = 512
+blocked multiply time: 12435.9 ms

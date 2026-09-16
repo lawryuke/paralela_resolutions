@@ -169,9 +169,15 @@ void blocking_n_fixed() {
     // using L2 cache. 512 KB size in L2 cache per core (ryzen 5 5600G)
     // let f(x) = 3(x)^2 (8) bytes
     // b = f(64) -> 98 KB -> 18% of the L2
+    // b = f(120) -> 66% of the L2
+    // b = f(128) -> 75% of the L2
     // b = f(144) -> 497.6 KB -> 95% of the L2
+    // b = f(160) -> 600 KB -> ~ 117% of the L2
+    // b = f(192) -> 864 KB -> ~ 168% of the L2
     // b = f(256) -> 1.57 MB -> ~ 300% of the L2
-    for (int b : {64, 144, 256}) {
+    // b = f(384) -> 3.37 MB -> ~ 675% of the L2
+    // b = f(512) -> 6.0 MB -> ~ 1200% of the L2
+    for (int b : {64, 120, 128, 144, 160, 192, 256, 384, 512}) {
         std::cout << "\nb = " << b << std::endl;
 
         // init matrices
