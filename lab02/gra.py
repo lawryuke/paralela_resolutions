@@ -167,7 +167,34 @@ def matriz_mult_bloques():
     plt.savefig('verificacion_matriz_bloques.png', dpi=300, bbox_inches='tight')
     plt.close()
 
+def rendimiento_bloques():
+    '''
+    Resultados promedio (5 iteraciones) para N=1200 
+    con diferentes tamaños de bloque (b) en Intel i5-1135G7
+    '''
+    b_vals = [64, 120, 128, 144, 160, 192, 256, 384, 512]
+    t_vals = [5340.83, 5269.75, 5258.36, 5258.35, 5253.1, 5300.3, 5299.76, 5261.92, 5265.06]
+
+    plt.figure(figsize=(9, 6))
+
+    # Graficar puntos
+    plt.plot(b_vals, t_vals, marker='o', color='#9467bd', linestyle='-', linewidth=2, markersize=8, label='Tiempo promedio (5 iter)')
+
+    plt.title('Impacto del Tamaño de Bloque (b) en el Tiempo Promedio\n(Matriz N=1200, 5 Iteraciones)', fontsize=14, fontweight='bold', pad=15)
+    plt.xlabel('Tamaño del bloque (b)', fontsize=12)
+    plt.ylabel('Tiempo de ejecución (ms)', fontsize=12)
+
+    # Configurar límites y formato de los ejes
+    plt.xlim(0, 550)
+    # plt.ylim() removido para usar acotación automática
+    plt.grid(True, linestyle=':', alpha=0.6)
+    plt.legend(fontsize=11, loc='upper right')
+
+    plt.savefig('analisis_tamano_bloque.png', dpi=300, bbox_inches='tight')
+    plt.close()
+
 if __name__ == '__main__':
     # ejercicio_loops()
     # matriz_mult_i_j_k()
-    matriz_mult_bloques()
+    # matriz_mult_bloques()
+    rendimiento_bloques()
