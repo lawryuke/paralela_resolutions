@@ -113,6 +113,61 @@ def matriz_mult_i_j_k():
     plt.savefig('verificacion_matriz_mult.png', dpi=300, bbox_inches='tight')
     plt.close()
 
+def matriz_mult_bloques():
+    '''
+    N = 100
+    classic i-j-k multiply time: 9.322 ms
+    performance i-k-j multiply time: 4.748 ms
+    blocked multiply time: 3.089 ms
+    ... (omitted for brevity)
+    N = 1600
+    classic i-j-k multiply time: 25425.4 ms
+    performance i-k-j multiply time: 14993.6 ms
+    blocked multiply time: 12175.7 ms
+    '''
+    n = [100, 500, 1000, 1300, 1400, 1500, 1600]
+    t_classic = [9.322, 507.7, 5510.63, 13571, 16753.7, 20812.7, 25425.4]
+    t_perf = [4.748, 452.065, 3656.83, 8043.4, 10026.2, 12381.1, 14993.6]
+    t_blocked = [3.089, 375.047, 2976.52, 6558.87, 8152.99, 10066, 12175.7]
+
+    n_suave = np.linspace(min(n), max(n), 300)
+
+    # Ajuste Teórico (Cúbico O(N³)) para Clásico
+    c1 = t_classic[-1] / (n[-1]**3)
+    t_classic_teorico = c1 * (n_suave**3)
+    
+    # Ajuste Teórico (Cúbico O(N³)) para Performance
+    c2 = t_perf[-1] / (n[-1]**3)
+    t_perf_teorico = c2 * (n_suave**3)
+
+    # Ajuste Teórico (Cúbico O(N³)) para Blocked
+    c3 = t_blocked[-1] / (n[-1]**3)
+    t_blocked_teorico = c3 * (n_suave**3)
+
+    plt.figure(figsize=(9, 6))
+
+    plt.scatter(n, t_classic, color='#d62728', edgecolors='black', s=70, zorder=5, label='Mediciones: Clásico i-j-k')
+    plt.plot(n_suave, t_classic_teorico, color='#d62728', linestyle='--', linewidth=2, label='Tendencia Teórica (Clásico)')
+
+    plt.scatter(n, t_perf, color='#2ca02c', edgecolors='black', s=70, zorder=5, label='Mediciones: Performance i-k-j')
+    plt.plot(n_suave, t_perf_teorico, color='#2ca02c', linestyle='-.', linewidth=2, label='Tendencia Teórica (Performance)')
+
+    plt.scatter(n, t_blocked, color='#1f77b4', edgecolors='black', s=70, zorder=5, label='Mediciones: Blocked')
+    plt.plot(n_suave, t_blocked_teorico, color='#1f77b4', linestyle=':', linewidth=2, label='Tendencia Teórica (Blocked)')
+
+    plt.title('Comparación de Tiempo de Ejecución: Incluyendo Bloques', fontsize=14, fontweight='bold', pad=15)
+    plt.xlabel('Tamaño de la matriz (N)', fontsize=12)
+    plt.ylabel('Tiempo de ejecución (ms)', fontsize=12)
+
+    plt.xlim(min(n) - 100, max(n) + 100)
+    plt.ylim(0, max(t_classic) + 2000)
+    plt.grid(True, linestyle=':', alpha=0.6)
+    plt.legend(fontsize=11, loc='upper left')
+
+    plt.savefig('verificacion_matriz_bloques.png', dpi=300, bbox_inches='tight')
+    plt.close()
+
 if __name__ == '__main__':
     # ejercicio_loops()
-    matriz_mult_i_j_k()
+    # matriz_mult_i_j_k()
+    matriz_mult_bloques()

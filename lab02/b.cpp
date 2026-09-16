@@ -94,7 +94,7 @@ void experiment() {
     double** A = nullptr;
     double** B = nullptr;
     double** C = nullptr;
-    for (int n : {100, 500, 1000, 1300, 1500, 1600}) {
+    for (int n : {100, 500, 1000, 1300, 1400, 1500, 1600}) {
         std::cout << "N = " << n << std::endl;
         // init matrices
         assign_matrix(A, n, 4.0);
@@ -153,9 +153,57 @@ void experiment() {
     }
 
 }
-int main() {
-    experiment();
-    return 0;
+
+/**
+ * @brief experiment with a N fixed and diferent b values 
+*/
+void blocking_n_fixed() {
+
+    double** A = nullptr;
+    double** B = nullptr;
+    double** C = nullptr;
+
+    const int n = 1600;
+    std::cout << "===== N = " << n << " =====" << std::endl;
+
+    // using L2 cache. 512 KB size in L2 cache per core (ryzen 5 5600G)
+    // let f(x) = 3(x)^2 (8) bytes
+    // b = f(64) -> 98 KB -> 18% of the L2
+    // b = f(144) -> 497.6 KB -> 95% of the L2
+    // b = f(256) -> 1.57 MB -> ~ 300% of the L2
+    for (int b : {64, 144, 256}) {
+        std::cout << "\nb = " << b << std::endl;
+
+        // init matrices
+        assign_matrix(A, n, 4.0);
+        assign_matrix(B, n, 9.0);
+        assign_matrix(C, n, 0.0);
+
+        auto start = std::chrono::steady_clock::now();
+
+        blocked_mult_matrix(A, B, C, n, b); // variable blocks
+
+        auto end = std::chrono::steady_clock::now();
+        auto delta = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
+        double time = delta / 1000.0;
+
+        std::cout << "blocked multiply time: " << time << " ms" << std::endl;
+
+    }
+    // destructor
+    for (int i = 0; i < n; i++) {
+        delete[] A[i];
+        delete[] B[i];
+        delete[] C[i];
+    }
+    delete[] A;
+    delete[] B;
+    delete[] C;
 }
 
+int main() {
+    // experiment();
+    blocking_n_fixed();
+    return 0;
+}
 
