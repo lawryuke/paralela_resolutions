@@ -1,28 +1,163 @@
-===== N = 1600 =====
+5
+
+======= INTERACION: 0 ========
+===== N = 1200 =====
 
 b = 64
-blocked multiply time: 12647.3 ms
+blocked multiply time: 5324.89 ms
 
 b = 120
-blocked multiply time: 12476.8 ms
+blocked multiply time: 5265.45 ms
 
 b = 128
-blocked multiply time: 12485 ms
+blocked multiply time: 5254.61 ms
 
 b = 144
-blocked multiply time: 12499.1 ms
+blocked multiply time: 5251.95 ms
 
 b = 160
-blocked multiply time: 12503.8 ms
+blocked multiply time: 5250.44 ms
 
 b = 192
-blocked multiply time: 12542.2 ms
+blocked multiply time: 5401.23 ms
 
 b = 256
-blocked multiply time: 12570.8 ms
+blocked multiply time: 5300.01 ms
 
 b = 384
-blocked multiply time: 12479.9 ms
+blocked multiply time: 5258.57 ms
 
 b = 512
-blocked multiply time: 12435.9 ms
+blocked multiply time: 5246.33 ms
+
+======= INTERACION: 1 ========
+===== N = 1200 =====
+
+b = 64
+blocked multiply time: 5342.34 ms
+
+b = 120
+blocked multiply time: 5270.8 ms
+
+b = 128
+blocked multiply time: 5251.62 ms
+
+b = 144
+blocked multiply time: 5254.4 ms
+
+b = 160
+blocked multiply time: 5244.79 ms
+
+b = 192
+blocked multiply time: 5267.11 ms
+
+b = 256
+blocked multiply time: 5297.74 ms
+
+b = 384
+blocked multiply time: 5246.1 ms
+
+b = 512
+blocked multiply time: 5251.9 ms
+
+======= INTERACION: 2 ========
+===== N = 1200 =====
+
+b = 64
+blocked multiply time: 5329.68 ms
+
+b = 120
+blocked multiply time: 5263.54 ms
+
+b = 128
+blocked multiply time: 5249.71 ms
+
+b = 144
+blocked multiply time: 5274.94 ms
+
+b = 160
+blocked multiply time: 5267.48 ms
+
+b = 192
+blocked multiply time: 5270.46 ms
+
+b = 256
+blocked multiply time: 5294.66 ms
+
+b = 384
+blocked multiply time: 5275.41 ms
+
+b = 512
+blocked multiply time: 5285.53 ms
+
+======= INTERACION: 3 ========
+===== N = 1200 =====
+
+b = 64
+blocked multiply time: 5364.27 ms
+
+b = 120
+blocked multiply time: 5281.18 ms
+
+b = 128
+blocked multiply time: 5280.33 ms
+
+b = 144
+blocked multiply time: 5260.22 ms
+
+b = 160
+blocked multiply time: 5254.69 ms
+
+b = 192
+blocked multiply time: 5298.48 ms
+
+b = 256
+blocked multiply time: 5329.26 ms
+
+b = 384
+blocked multiply time: 5284.39 ms
+
+b = 512
+blocked multiply time: 5295.6 ms
+
+======= INTERACION: 4 ========
+===== N = 1200 =====
+
+b = 64
+blocked multiply time: 5342.98 ms
+
+b = 120
+blocked multiply time: 5267.76 ms
+
+b = 128
+blocked multiply time: 5255.53 ms
+
+b = 144
+blocked multiply time: 5250.25 ms
+
+b = 160
+blocked multiply time: 5248.08 ms
+
+b = 192
+blocked multiply time: 5264.22 ms
+
+b = 256
+blocked multiply time: 5277.14 ms
+
+b = 384
+blocked multiply time: 5245.13 ms
+
+b = 512
+blocked multiply time: 5245.93 ms
+
+====== average for iter=5 =========
+blocking N=1200
+b=64: 5340.83 ms
+b=120: 5269.75 ms
+b=128: 5258.36 ms
+b=144: 5258.35 ms
+b=160: 5253.1 ms
+b=192: 5300.3 ms
+b=256: 5299.76 ms
+b=384: 5261.92 ms
+b=512: 5265.06 ms
