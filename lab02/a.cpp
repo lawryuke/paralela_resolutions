@@ -116,15 +116,16 @@ int main() {
         partial_a[i] /= div;
         partial_b[i] /= div;
     }
-    std::cout << "====== avergage =========" << std::endl;
+    std::cout << "\n====== avergage for iter="<< iter << " =========" << std::endl;
     std::cout << "first loop" << std::endl;
     for (int i = 0; i < 3; ++i) {
         std::cout << "N=" << i << ": " << partial_a[i] << " ms" << std::endl;
     }
     std::cout << '\n';
     std::cout << "second loop" << std::endl;
+    int size_n[3] = {4000, 8000, 10000};
     for (int i = 0; i < 3; ++i) {
-        std::cout << "N=" << i << ": " << partial_b[i] << " ms" << std::endl;
+        std::cout << "N=" << size_n[i] << ": " << partial_b[i] << " ms" << std::endl;
     }
 
     return 0;
