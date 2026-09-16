@@ -1,6 +1,7 @@
 #include <iostream>
 #include <chrono>
 #include <algorithm>
+#include <vector>
 
 
 // const int MAX = 10000;
@@ -42,11 +43,11 @@ void second_loops(double**& A, double* x, double* y, const int n) {
     }
 }
 
-void first_analisis() {
-
+void first_analisis(std::vector<double>& partial_a, std::vector<double>& partial_b) {;
 
     // n = {4000,8000, 10000} -> doubles
     // n = {128MB, 512MB, 800MB} -> MB en RAM
+    int i = 0;
     for (const int n : {4000, 8000, 10000}) {
         std::cout << "N = " << n << std::endl;
         // ==== FIRST LOOP =======
@@ -69,6 +70,7 @@ void first_analisis() {
 
         // result
         std::cout << "consume time first loop: " << time  << " ms" << std::endl;
+        partial_a[i] += time;
 
 
         // ==== SECOND LOOP =======
@@ -86,6 +88,7 @@ void first_analisis() {
 
         // result
         std::cout << "consume time second loop: " << time  << " ms" << std::endl;
+        partial_b[i] += time;
 
         // ===== DESTRUCT =======
         for (int i = 0; i < n; i++) {
@@ -94,10 +97,35 @@ void first_analisis() {
         delete[] A;
         delete[] x;
         delete[] y;
+
+        i++;
     }
 }
 
 int main() {
-    first_analisis();
+    int iter; std::cin >> iter;
+    std::vector<double> partial_a(3);
+    std::vector<double> partial_b(3);
+    for (int i = 0; i < iter; ++i) {
+        std::cout << "\n======= INTERACION: " << i << " ========" << std::endl;
+        first_analisis(partial_a, partial_b);
+    }
+
+    int div = static_cast<double>(iter);
+    for (int i = 0; i < 3; ++i) {
+        partial_a[i] /= div;
+        partial_b[i] /= div;
+    }
+    std::cout << "====== avergage =========" << std::endl;
+    std::cout << "first loop" << std::endl;
+    for (int i = 0; i < 3; ++i) {
+        std::cout << "N=" << i << ": " << partial_a[i] << " ms" << std::endl;
+    }
+    std::cout << '\n';
+    std::cout << "second loop" << std::endl;
+    for (int i = 0; i < 3; ++i) {
+        std::cout << "N=" << i << ": " << partial_b[i] << " ms" << std::endl;
+    }
+
     return 0;
 }
